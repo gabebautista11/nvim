@@ -104,7 +104,7 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
+				ts_ls = {},
 				--
 
 				lua_ls = {
@@ -190,12 +190,42 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
+		},
+	},
+
+	--tree-sitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = {
+				"javascript",
+				"typescript",
+				"c_sharp",
+				"html",
+				"css",
+				"lua",
+				"markdown",
+				"markdown_inline",
+			},
+			-- Autoinstall languages that are not installed
+			auto_install = true,
+			highlight = {
+				enable = true,
+				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+				--  If you are experiencing weird indenting issues, add the language to
+				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
+				additional_vim_regex_highlighting = { "ruby" },
+			},
+			indent = { enable = true, disable = { "ruby" } },
 		},
 	},
 	{ -- Autocompletion
@@ -308,4 +338,78 @@ return {
 
 	-- git config
 	{ "lewis6991/gitsigns.nvim" },
+
+	-- telescope
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		requires = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{
+				"<leader>sg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "[s]earch using live [g]rep",
+			},
+			{
+				"<leader>sf",
+				function()
+					require("telescope.builtin").find_files()
+				end,
+				desc = "[s]earch [f]iles",
+			},
+		},
+	},
+
+	--which key
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			spec = {
+				{ "<leader>s", group = "[s]earch" },
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
+
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {},
+		keys = {
+			{
+				"<leader>`",
+				function()
+					local Terminal = require("toggleterm.terminal").Terminal
+					local terminalSetup = Terminal:new({
+						hidden = false,
+					})
+					terminalSetup:toggle()
+				end,
+				desc = "new [t]erminal",
+			},
+		},
+		config = function()
+			-- Exit terminal mode with Esc
+			vim.api.nvim_set_keymap(
+				"t", -- terminal mode
+				"<Esc>", -- key to press
+				"<C-\\><C-n>", -- exit to normal mode
+				{ noremap = true, silent = true }
+			)
+		end,
+	},
 }
