@@ -190,8 +190,9 @@ return {
 		branch = "v3.x",
 		lazy = true,
 		cmd = "Neotree",
-		keys = { { "<leader>e", "<cmd>Neotree toggle<CR>" } },
+		keys = { { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file [e]xplore" } },
 		dependencies = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
+		opts = {},
 	},
 	{ "lewis6991/gitsigns.nvim" },
 
