@@ -28,6 +28,8 @@ return {
 				"lua_ls",
 				"ts_ls",
 				"cssls",
+				"html",
+				"csharp_ls",
 			},
 		},
 	},
@@ -57,6 +59,8 @@ return {
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("ts_ls")
 			vim.lsp.enable("cssls")
+			vim.lsp.enable("html")
+			vim.lsp.enable("csharp_ls")
 		end,
 	},
 	------------------------------------------------------------
@@ -89,6 +93,8 @@ return {
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
 				css = { "prettierd" },
+				html = { "prettierd" },
+				csharp = { "csharpier" },
 			},
 		},
 	},
