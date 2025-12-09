@@ -20,12 +20,14 @@ return {
 		opts = {},
 	},
 
+	--https://github.com/mason-org/mason-registry/tree/2025-12-09-inland-king/packages
 	{
 		"mason-org/mason-lspconfig.nvim",
 		otps = {
 			ensure_installed = {
 				"lua_ls",
 				"ts_ls",
+				"cssls",
 			},
 		},
 	},
@@ -54,6 +56,7 @@ return {
 		config = function()
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("ts_ls")
+			vim.lsp.enable("cssls")
 		end,
 	},
 	------------------------------------------------------------
@@ -85,6 +88,7 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
+				css = { "prettierd" },
 			},
 		},
 	},
