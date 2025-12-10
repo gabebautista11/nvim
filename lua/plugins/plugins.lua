@@ -103,41 +103,21 @@ return {
 	-- TROUBLE
 	------------------------------------------------------------
 	{
-		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
-		cmd = "Trouble",
-		keys = {
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>cs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>cl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
-			},
-			{
-				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
-			},
-			{
-				"<leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
-			},
-		},
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		priority = 1000,
+
+		config = function()
+			vim.diagnostic.config({ virtual_text = false })
+
+			require("tiny-inline-diagnostic").setup({
+				options = {
+					show_source = { enabled = true },
+					add_messages = { display_count = true },
+					multilines = { enabled = true },
+				},
+			})
+		end,
 	},
 
 	------------------------------------------------------------
@@ -181,16 +161,16 @@ return {
 	------------------------------------------------------------
 	---AUTO SAVE
 	------------------------------------------------------------
-	{
-		"okuuva/auto-save.nvim",
-		version = "^1.0.0", -- see https://devhints.io/semver, alternatively use '*' to use the latest tagged release
-		cmd = "ASToggle", -- optional for lazy loading on command
-		event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
-		opts = {
-			-- your config goes here
-			-- or just leave it empty :)
-		},
-	},
+	--	{
+	--		"okuuva/auto-save.nvim",
+	--		version = "^1.0.0", -- see https://devhints.io/semver, alternatively use '*' to use the latest tagged release
+	--		cmd = "ASToggle", -- optional for lazy loading on command
+	--		event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
+	--		opts = {
+	--			-- your config goes here
+	--			-- or just leave it empty :)
+	--		},
+	--	},
 	------------------------------------------------------------
 	--- GIT INTEGRATION
 	------------------------------------------------------------
@@ -237,7 +217,13 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = { spec = { { "<leader>s", group = "[s]earch" }, { "<leader>t", group = "[t]ab" } } },
+		opts = {
+			spec = {
+				{ "<leader>s", group = "[s]earch" },
+				{ "<leader>t", group = "[t]ab" },
+				{ "<leader>x", group = "trouble" },
+			},
+		},
 		keys = {
 			{
 				"<leader>?",
@@ -266,6 +252,7 @@ return {
 				desc = "New [t]erminal",
 			},
 		},
+
 		config = function()
 			-- Exit terminal mode with Esc
 			vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
