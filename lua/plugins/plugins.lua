@@ -33,22 +33,13 @@ return {
 			},
 		},
 	},
-
-	{
-		"ms-jpq/coq_nvim",
-		branch = "coq",
-	},
-	{
-		"ms-jpq/coq.artifacts",
-		branch = "artifacts",
-	},
-	{
-		"ms-jpq/coq.thirdparty",
-		branch = "3p",
-	},
-
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "ms-jpq/coq_nvim", branch = "coq" },
+			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
+			{ "ms-jpq/coq.thirdparty", branch = "3p" },
+		},
 
 		init = function()
 			vim.g.coq_settings = {
@@ -56,6 +47,10 @@ return {
 			}
 		end,
 		config = function()
+			local compabilites = require("coq").lsp_ensure_capabilities()
+			vim.lsp.config("*", {
+				compabilites = compabilites,
+			})
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("ts_ls")
 			vim.lsp.enable("cssls")
