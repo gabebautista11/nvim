@@ -6,6 +6,15 @@ vim.keymap.set("n", "<leader>tc", "<cmd>tabnew<CR>", { desc = "Create Tab" })
 vim.keymap.set("n", "<leader>tp", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 
+-- ===========================================================
+--                        START UP FUNCTIONS
+--                        ==================
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("Neotree left")
+	end,
+})
+
 -- ============================================================
 --                        PLUGIN CONFIG
 -- ============================================================
@@ -162,6 +171,19 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			theme = "ayu",
+
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { "filename" },
+				lualine_x = { "filetype", "lsp_status" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			component_separators = { left = "|", right = "|" },
+		},
 	},
 	------------------------------------------------------------
 	---AUTO SAVE
