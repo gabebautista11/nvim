@@ -17,6 +17,7 @@ return {
 	------------------------------------------------------------
 	{
 		"mason-org/mason.nvim",
+		build = ":MasonUpdate",
 		opts = {},
 	},
 
@@ -31,12 +32,21 @@ return {
 				"html",
 				"csharp_ls",
 			},
+			automatic_installation = true,
 		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "ms-jpq/coq_nvim", branch = "coq" },
+			{
+				"ms-jpq/coq_nvim",
+				branch = "coq",
+				init = function()
+					vim.g.coq_settings = {
+						auto_start = "shut-up",
+					}
+				end,
+			},
 			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
 			{ "ms-jpq/coq.thirdparty", branch = "3p" },
 		},
