@@ -11,7 +11,9 @@ vim.keymap.set("n", "<leader>tn", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 --                        ==================
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		vim.cmd("Neotree left")
+		if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+			vim.cmd("Neotree left")
+		end
 	end,
 })
 
@@ -27,13 +29,15 @@ return {
 	{
 		"mason-org/mason.nvim",
 		build = ":MasonUpdate",
+		cmd = { "Mason", "MasonUpdate" },
 		opts = {},
 	},
 
 	--https://github.com/mason-org/mason-registry/tree/2025-12-09-inland-king/packages
 	{
 		"mason-org/mason-lspconfig.nvim",
-		otps = {
+		event = "VeryLazy",
+		opts = {
 			ensure_installed = {
 				"lua_ls",
 				"ts_ls",
@@ -46,10 +50,12 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
 				"ms-jpq/coq_nvim",
 				branch = "coq",
+				event = "InsertEnter",
 				init = function()
 					vim.g.coq_settings = {
 						auto_start = "shut-up",
@@ -60,11 +66,6 @@ return {
 			{ "ms-jpq/coq.thirdparty", branch = "3p" },
 		},
 
-		init = function()
-			vim.g.coq_settings = {
-				auto_start = true,
-			}
-		end,
 		config = function()
 			local compabilites = require("coq").lsp_ensure_capabilities()
 			vim.lsp.config("*", {
@@ -170,6 +171,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			theme = "ayu",
@@ -187,6 +189,7 @@ return {
 	},
 	{
 		"romgrk/barbar.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
 			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
