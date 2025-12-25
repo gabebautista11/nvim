@@ -4,7 +4,13 @@ return {
 		event = "VeryLazy",
 		config = function()
 			vim.diagnostic.config({ virtual_text = false })
-			require("tiny-inline-diagnostic").setup({})
+			require("tiny-inline-diagnostic").setup({
+				options = {
+					show_source = { enabled = true },
+					add_messages = { display_count = true },
+					multilines = { enabled = true },
+				},
+			})
 		end,
 	},
 	{
