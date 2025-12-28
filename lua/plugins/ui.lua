@@ -1,16 +1,10 @@
 return {
 	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("tokyonight")
-		end,
-	},
-	{
 		-- lua/plugins/rose-pine.lua
 		"rose-pine/neovim",
 		name = "rose-pine",
+		lazy = false,
+		priority = 1000,
 		config = function()
 			vim.cmd("colorscheme rose-pine")
 		end,
@@ -18,7 +12,16 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch" },
+				lualine_c = { "diagnostics" },
+				lualine_x = { "filetype" },
+				lualine_y = { "filename" },
+				lualine_z = {},
+			},
+		},
 	},
 	-- lazy.nvim
 	{
@@ -33,6 +36,22 @@ return {
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 				},
 			},
+
+			-- 🔒 prevent Noice windows from ever taking focus
+			views = {
+				popup = {
+					enter = false,
+					focusable = false,
+				},
+				cmdline_popup = {
+					enter = false,
+					focusable = false,
+				},
+				mini = {
+					enter = false,
+				},
+			},
+
 			-- presets
 			presets = {
 				bottom_search = true,
@@ -42,13 +61,21 @@ return {
 				lsp_doc_border = false,
 			},
 		},
+
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
+
+			-- nvim-notify (also locked from focus)
+			{
+				"rcarriga/nvim-notify",
+				opts = {
+					focusable = false,
+					on_open = function(win)
+						-- extra safety: force unfocusable after creation
+						vim.api.nvim_win_set_config(win, { focusable = false })
+					end,
+				},
+			},
 		},
 	},
 }

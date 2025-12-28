@@ -61,16 +61,29 @@ return {
 		},
 		lazy = false, -- neo-tree will lazily load itself
 	},
+
 	{
-		"EL-MASTOR/bufferlist.nvim",
-		lazy = true,
-		keys = { { "<Leader>b", ":BufferList<CR>", desc = "Open bufferlist" } },
-		dependencies = "nvim-tree/nvim-web-devicons",
-		cmd = "BufferList",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+		"romgrk/barbar.nvim",
+		lazy = false,
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
 		},
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		opts = {
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			-- animation = true,
+			-- insert_at_start = true,
+			-- …etc.
+		},
+		keys = {
+			{ "<leader>bp", "<cmd>BufferPick<CR>", desc = "Buffer pick" },
+			{ "<leader>bh", "<cmd>BufferPrevious<CR>", desc = "Pick left buffer" },
+			{ "<leader>bl", "<cmd>BufferNext<CR>", desc = "Pick right buffer" },
+			{ "<leader>bc", "<cmd>BufferClose<CR>", desc = "Buffer close" },
+		},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 }
