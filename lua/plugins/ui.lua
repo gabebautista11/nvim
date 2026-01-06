@@ -1,12 +1,11 @@
 return {
 	{
-		-- lua/plugins/rose-pine.lua
-		"morhetz/gruvbox",
-		name = "gruvbox",
+		"rebelot/kanagawa.nvim",
+		name = "kanagawa",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd("colorscheme gruvbox")
+			vim.cmd("colorscheme kanagawa-wave")
 		end,
 	},
 	{
