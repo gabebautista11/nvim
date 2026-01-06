@@ -1,5 +1,8 @@
 return {
 	{
+		vim.keymap.set("n", "q", ":bdelete<CR>"),
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim" },

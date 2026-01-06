@@ -30,6 +30,17 @@ vim.o.smartindent = true
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Deletes swap files on neovim exit
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	callback = function()
+		vim.cmd("silent! swapdelete")
+	end,
+})
+
+vim.opt.directory = vim.fn.stdpath("state") .. "/swap//"
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo//"
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
