@@ -1,11 +1,30 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		name = "kanagawa",
+		"EdenEast/nightfox.nvim",
+		name = "nightfox",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.cmd("colorscheme kanagawa-wave")
+
+		--- lazy.nvim passes opts to this config
+		opts = {
+			options = {
+				colorblind = {
+					enable = true,
+					severity = { -- fixed spelling
+						protan = 1,
+						deutan = 0,
+						tritan = 0,
+					},
+				},
+			},
+		},
+
+		config = function(_, opts)
+			-- apply opts to nightfox
+			require("nightfox").setup(opts)
+
+			-- pick your theme
+			vim.cmd("colorscheme nightfox")
 		end,
 	},
 	{
