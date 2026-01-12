@@ -1,6 +1,11 @@
 return {
 	{
-		vim.keymap.set("n", "q", ":bdelete<CR>"),
+		vim.keymap.set("n", "q", function()
+			if vim.bo.modified then -- check if buffer has unsaved changes
+				vim.cmd("write") -- save buffer
+			end
+			vim.cmd("bdelete!") -- close the buffer
+		end, { noremap = true, silent = true }),
 	},
 	{
 		"nvim-telescope/telescope.nvim",
