@@ -5,3 +5,10 @@ Lua
 Luarocks
 ripgrep
 Nerd fonts
+C compiler
+rust
+
+
+
+
+
