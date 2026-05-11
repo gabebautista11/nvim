@@ -37,21 +37,6 @@ return {
 
 	},
 
-	--Syntax
-	{
-		"romus204/tree-sitter-manager.nvim",
-		dependencies = {}, -- tree-sitter CLI must be installed system-wide
-		config = function()
-			require("tree-sitter-manager").setup({
-
-				-- Default Options
-				ensure_installed = {
-				},
-			})
-		end
-	},
-
-
 	-- language additions
 	{
 		"seblyng/roslyn.nvim",
@@ -59,6 +44,7 @@ return {
 		---@type RoslynNvimConfig
 		opts = {
 			-- your configuration comes here; leave empty for default settings
+			filwatching = "off",
 		},
 	}
 
