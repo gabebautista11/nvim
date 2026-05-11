@@ -1,7 +1,7 @@
 return {
 	{
 		"dgagn/diagflow.nvim",
-		even = "LspAttach",
+		event = "LspAttach",
 		opts = {},
 	},
 }
