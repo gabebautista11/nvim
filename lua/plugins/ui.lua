@@ -22,4 +22,9 @@ return {
 			}
 		end,
 	},
+	{
+		'leo-alvarenga/homecoming.nvim',
+		branch = 'nightly', -- Optional: specify the nightly branch if you want to use the latest features
+		opts = {}, -- No configuration is required to get started
+	},
 }

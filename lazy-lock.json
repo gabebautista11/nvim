@@ -4,6 +4,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "conform.nvim": { "branch": "master", "commit": "dca1a190aa85f9065979ef35802fb77131911106" },
   "diagflow.nvim": { "branch": "main", "commit": "b13321b517ff64bf42eeac2214085d3c76d83a0d" },
+  "homecoming.nvim": { "branch": "nightly", "commit": "0366d876b97b9579026fe1c12d9367ebcf2a42d7" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lualine.nvim": { "branch": "master", "commit": "131a558e13f9f28b15cd235557150ccb23f89286" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "51feb0ada33d18f3c5c71ffb46005dbf8b33bef4" },

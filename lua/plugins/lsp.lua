@@ -47,7 +47,6 @@ return {
 				-- Default Options
 				ensure_installed = {
 				},
-				auto_install = true,
 			})
 		end
 	},
