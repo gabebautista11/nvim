@@ -6,6 +6,7 @@ Luarocks
 Nerd fonts
 C compiler
 rust (rust-up)
+npm
 
 
 Telescope:
