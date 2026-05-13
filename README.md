@@ -1,21 +1,11 @@
 Dependencies:
-Lua
+Lua install independenly on windows and add to path then do the same with luarocks
 Luarocks
 Nerd fonts
-C compiler
+C compiler (for windows i found cl to work the best) for linux this comes built in
 rust (rust-up)
 npm
 
-
-OS Installs:
-
-Tips: For windows just install lua and luarocks binaries sepretaly and add user PATHS
-
-- Lua 
-- Luarocks
-- Nerd fonts
-- C compiler
-- rust (rust-up) and cargo
 
 Plugin Installs:
 
