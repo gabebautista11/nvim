@@ -14,10 +14,14 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
-					lualine_c = { "lsp_status" },
+					lualine_c = { {
+						function()
+							return vim.g.colors_name or "No Color Scheme"
+						end,
+					}, },
 					lualine_x = { "filename" },
 					lualine_y = { "filetype" },
-					lualine_z = { "filesize" },
+					lualine_z = { "lsp_status" },
 				},
 			}
 		end,
@@ -56,12 +60,14 @@ return {
 
 			},
 
-		}, -- No configuration is required to get started
+		},
 	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {},
+		config = function()
+			vim.cmd.colorscheme("tokyonight-moon")
+		end,
 	},
 }
