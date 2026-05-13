@@ -1,8 +1,23 @@
 return {
-	"nvim-telescope/telescope.nvim", version = "*",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		{"nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
+	{
+		"nvim-telescope/telescope.nvim",
+		version = "*",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
+		}
+
+	},
+	{
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
 	}
 
 }
