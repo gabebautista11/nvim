@@ -45,8 +45,7 @@ return {
 		config = function()
 			require("tree-sitter-manager").setup({
 				-- Default Options
-				ensure_installed = {}, -- list of parsers to install at the start of a neovim session
-				auto_install = false, -- if enabled, install missing parsers when editing a new file
+				ensure_installed = { "lua" }, -- list of parsers to install at the start of a neovim session
 			})
 		end
 	},

@@ -39,6 +39,12 @@ return {
 								require("oil").open()
 							end,
 						},
+						{
+							label = "New Buffer",
+							action = function()
+								vim.cmd.enew()
+							end,
+						},
 
 					},
 				},
