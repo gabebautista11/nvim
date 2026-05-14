@@ -5,17 +5,21 @@ return {
 		spec = {
 			{ "<leader>t", group = "Telescope" },
 		},
-	},
-
-	dependencies = { { "nvim-mini/mini.icons", opts = {} }, },
-	keys = {
-		{
-			"<leader>?",
-			function()
-				require("which-key").show({ global = false })
-			end,
-			desc = "Buffer Local Keymaps (which-key)",
+		triggers = {
+			{ "<auto>", mode = "nixsotc" },
+			{ "a",      mode = { "n", "v" } },
 		},
 
+		dependencies = { { "nvim-mini/mini.icons", opts = {} }, },
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+
+		},
 	},
 }
