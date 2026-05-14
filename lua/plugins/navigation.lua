@@ -14,6 +14,14 @@ return {
 				end,
 				desc = "Find Files",
 			},
+			{
+				"<leader>tg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "Live Grep",
+			},
+
 
 		},
 
@@ -53,6 +61,18 @@ return {
 							label = "New Buffer",
 							action = function()
 								vim.cmd.enew()
+							end,
+						},
+						{
+							label = "Telescope Files",
+							action = function()
+								require("telescope.builtin").find_files()
+							end,
+						},
+						{
+							label = "Telescope Live Grep",
+							action = function()
+								require("telescope.builtin").live_grep()
 							end,
 						},
 
