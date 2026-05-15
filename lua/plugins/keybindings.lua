@@ -1,25 +1,24 @@
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
-	opts = {
-		spec = {
-			{ "<leader>t", group = "Telescope" },
-		},
-		triggers = {
-			{ "<auto>", mode = "nixsotc" },
-			{ "a",      mode = { "n", "v" } },
-		},
+	dependencies = {
+		"nvim-mini/mini.icons",
+	},
+	config = function()
+		local wk = require("which-key")
 
-		dependencies = { { "nvim-mini/mini.icons", opts = {} }, },
-		keys = {
+		wk.setup()
+
+		wk.add({
+			{ "<leader>t", group = "Telescope" },
+
 			{
 				"<leader>?",
 				function()
-					require("which-key").show({ global = false })
+					wk.show({ global = false })
 				end,
 				desc = "Buffer Local Keymaps (which-key)",
 			},
-
-		},
-	},
+		})
+	end,
 }
