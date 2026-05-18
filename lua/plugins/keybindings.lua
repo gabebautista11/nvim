@@ -1,16 +1,12 @@
 return {
-	"folke/which-key.nvim",
-	event = "VeryLazy",
-	opts = {
-		spec = {
-			{ "<leader>t", group = "Telescope" },
-		},
-		triggers = {
-			{ "<auto>", mode = "nixsotc" },
-			{ "a",      mode = { "n", "v" } },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+
+		dependencies = {
+			{ "nvim-mini/mini.icons", opts = {} },
 		},
 
-		dependencies = { { "nvim-mini/mini.icons", opts = {} }, },
 		keys = {
 			{
 				"<leader>?",
@@ -19,7 +15,17 @@ return {
 				end,
 				desc = "Buffer Local Keymaps (which-key)",
 			},
+		},
 
+		opts = {
+			spec = {
+				{ "<leader>t", group = "Telescope" },
+			},
+
+			triggers = {
+				{ "<auto>", mode = "nixsotc" },
+				{ "a",      mode = { "n", "v" } },
+			},
 		},
 	},
 }
