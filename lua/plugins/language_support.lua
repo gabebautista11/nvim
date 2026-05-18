@@ -46,6 +46,7 @@ return {
 			require("tree-sitter-manager").setup({
 				-- Default Options
 				ensure_installed = { "lua" }, -- list of parsers to install at the start of a neovim session
+				nohighlight = { "razor" },
 			})
 		end
 	},
